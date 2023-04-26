@@ -1,18 +1,29 @@
 ﻿@page "/counter"
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Jokes Count</PageTitle>
 
-<h1>Counter</h1>
+<h1>Lets get jokes count</h1>
+@if (isLoading)
+{
+    <div class="loader">Loading...</div> <!-- Replace with your actual loader HTML/CSS -->
+}
+else
+{
+    <p role="status">Jokes count: @currentCount</p>
+}
 
-<p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    [Inject]
+    public IDadJokesService jokesService { get; set; }
+    private bool isLoading = true;
     private int currentCount = 0;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        currentCount = await jokesService.GetJokesCount();
+        isLoading = false;
+        await base.OnInitializedAsync();
     }
 }

@@ -1,8 +1,11 @@
-﻿namespace DadJokesBlazorApp.Data
+﻿using DadJokesBlazorApp.Models;
+
+namespace DadJokesBlazorApp.Data
 {
     public interface IDadJokesService
     {
-        int GetJokesCount();
+        Task<int> GetJokesCount();
+        Task<Joke> GetRandomJoke();
 
     }
 }

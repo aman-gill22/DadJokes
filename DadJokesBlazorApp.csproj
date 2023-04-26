@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="restsharp" Version="110.2.0" />
   </ItemGroup>
 
 </Project>
